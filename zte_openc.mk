@@ -15,11 +15,11 @@ PRODUCT_COPY_FILES += \
 
 # Activation Bluetooth pour Open C (voir bug 1004896) et Timekeep service
 PRODUCT_PACKAGES += \
-+  bluetooth.default \
-+  timekeep \
+  bluetooth.default \
+  timekeep \
 
 PRODUCT_NAME := zte_openc
 PRODUCT_DEVICE := zte_p821a10
-PRODUCT_BRAND := qcom
-PRODUCT_MANUFACTURER := zte
-PRODUCT_MODEL := open c
+PRODUCT_BRAND := ZTE
+PRODUCT_MANUFACTURER := ZTE
+PRODUCT_MODEL := Open C
