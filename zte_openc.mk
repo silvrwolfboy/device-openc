@@ -3,6 +3,7 @@ $(call inherit-product, device/qcom/msm8610/msm8610.mk)
 PRODUCT_COPY_FILES += \
   device/zte/zte_p821a10/rootdir/init.rc:root/init.rc \
   device/zte/zte_p821a10/rootdir/init.qcom.rc:root/init.qcom.rc \
+  device/zte/zte_p821a10/rootdir/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
   device/zte/zte_p821a10/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
   device/zte/zte_p821a10/rootdir/init.qcom.usb.sh:root/init.qcom.usb.sh \
   device/zte/zte_p821a10/rootdir/init.target.rc:root/init.target.rc \
@@ -10,6 +11,7 @@ PRODUCT_COPY_FILES += \
   device/zte/zte_p821a10/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic.mk)
+$(call inherit-product-if-exists, vendor/zte/zte_p821a10/zte_p821a10-vendor-blobs.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.moz.ril.emergency_by_default=true \
