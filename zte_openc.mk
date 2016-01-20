@@ -1,12 +1,20 @@
 $(call inherit-product, device/qcom/msm8610/msm8610.mk)
 
-PRODUCT_COPY_FILES := \
+PRODUCT_COPY_FILES += \
+  device/zte/zte_p821a10/rootdir/init.rc:root/init.rc \
+  device/zte/zte_p821a10/rootdir/fstab.qcom:root/fstab.qcom \
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.moz.ril.emergency_by_default=true \
   org.bluez.device.conn.type=array \
+
+# Propriétés pour le ZTE Open C
+PRODUCT_PROPERTY_OVERRIDES += \
+  telephony.lteOnCdmaDevice=0 \
+  ro.qualcomm.cabl=0 \
+  ro.moz.ril.0.network_types=gsm,wcdma \
 
 # Rétablissement de l'heure
 PRODUCT_COPY_FILES += \
