@@ -70,6 +70,17 @@ ro.use_data_netmgrd=true
 #system props for time-services
 persist.timed.enable=true
 
+#ZTE_MODIFY
+# System props for audio
+persist.audio.fluence.mode=endfire
+persist.audio.vr.enable=false
+persist.audio.lowlatency.rec=false
+persist.audio.handset.mic=analog
+# System prop to select audio resampler quality
+af.resampler.quality=255
+# System prop to select MPQAudioPlayer by default on mpq8064
+mpq.audio.decode=true
+
 #
 # system prop for opengles version
 #
@@ -79,6 +90,7 @@ ro.opengles.version=196608
 #
 # System props for telephony
 # System prop to turn on CdmaLTEPhone always
+#ZTE_MODIFY
 telephony.lteOnCdmaDevice=0
 
 # simulate sdcard on /data/media
@@ -96,7 +108,8 @@ ro.qc.sdk.audio.fluencetype=none
 ro.sys.fw.bg_apps_limit=20
 
 # System property for cabl
-ro.qualcomm.cabl=0
+#ZTE_MODIFY
+ro.qualcomm.cabl=0 
 
 #
 #DASH video streaming
@@ -117,3 +130,6 @@ ro.fm.transmitter=false
 #Audio Resourcemanager exceptions
 #by enabling following flag to true we support pcm camcorder recording
 rm.audio.exceptions = true
+
+#ZTE_MODIFY
+ro.ril.data_auto_attach=true
