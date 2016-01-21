@@ -11,9 +11,6 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 1073741824
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 
-# don't create SD card partition
-BOARD_USBIMAGE_PARTITION_SIZE_KB :=
-
 # Paramètres pour bootimage/recoveryimage
 TARGET_PROVIDES_INIT_RC := false
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
@@ -22,6 +19,9 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $
 
 # Bouton 'Power' servant pour la sélection du recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
+
+# don't create SD card partition
+BOARD_USBIMAGE_PARTITION_SIZE_KB :=
 
 # Activation Bluetooth pour Open C (voir bug 1004896)
 BOARD_HAVE_BLUETOOTH := true
