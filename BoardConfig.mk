@@ -17,9 +17,6 @@ BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET := 0x02000000
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
-# Bouton 'Power' servant pour la sélection du recovery
-BOARD_HAS_NO_SELECT_BUTTON := true
-
 # don't create SD card partition
 BOARD_USBIMAGE_PARTITION_SIZE_KB :=
 
