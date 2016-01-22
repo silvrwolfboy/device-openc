@@ -19,12 +19,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Propriétés pour le ZTE Open C
 PRODUCT_PROPERTY_OVERRIDES += \
+  diag.reset_handler=true \
   telephony.lteOnCdmaDevice=0 \
   ro.qualcomm.cabl=0 \
   ro.moz.ril.0.network_types=gsm,wcdma \
   ro.moz.ril.emergency_by_default=true \
   org.bluez.device.conn.type=array \
   ro.moz.devinputjack=1 \
+  ro.display.colorfill=1 \
   ro.moz.omx.hw.max_width=1280 \
   ro.moz.omx.hw.max_height=720 \
   ro.moz.cam.0.sensor_offset=0 \
