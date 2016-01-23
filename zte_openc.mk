@@ -2,6 +2,7 @@ $(call inherit-product, device/qcom/msm8610/msm8610.mk)
 
 PRODUCT_COPY_FILES += \
   device/zte/zte_p821a10/rootdir/init.rc:root/init.rc \
+  device/zte/zte_p821a10/rootdir/init.environ.rc:root/init.environ.rc \
   device/zte/zte_p821a10/rootdir/init.qcom.rc:root/init.qcom.rc \
   device/zte/zte_p821a10/rootdir/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
   device/zte/zte_p821a10/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
