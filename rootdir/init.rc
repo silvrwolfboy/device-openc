@@ -613,5 +613,3 @@ service diag_klog /system/bin/diag_klog
     group radio cache inet misc audio
 
 #ZTE_MODIFY end yangyulin
-
-import /init.b2g.rc
