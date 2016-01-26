@@ -452,9 +452,7 @@ service servicemanager /system/bin/servicemanager
     user system
     group system
     critical
-    onrestart restart zygote
     onrestart restart media
-    onrestart restart surfaceflinger
     onrestart restart drm
 
 service vold /system/bin/vold
@@ -481,21 +479,6 @@ service ril-daemon /system/bin/rild
     socket rild-debug stream 660 radio system
     user root
     group radio cache inet misc audio log qcom_diag
-
-service surfaceflinger /system/bin/surfaceflinger
-    class main
-    user system
-    group graphics drmrpc
-    onrestart restart zygote
-    onrestart restart ppd
-
-service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
-    class main
-    socket zygote stream 660 root system
-    onrestart write /sys/android_power/request_state wake
-    onrestart write /sys/power/state on
-    onrestart restart media
-    onrestart restart netd
 
 service drm /system/bin/drmserver
     class main
@@ -562,10 +545,6 @@ service mdnsd /system/bin/mdnsd
     disabled
     oneshot
 
-service fakeperm /system/bin/fakeperm
-    class main
-    user root
-
 service gonksched /system/bin/gonksched
     class main
     user root
@@ -578,11 +557,7 @@ service b2g /system/bin/b2g.sh
     class main
     onrestart restart media
 
-#ZTE_MODIFY begin yangyulin
-service getlog /system/bin/sh /system/etc/getlogtofile.sh
-    oneshot
-    disabled
-    
+#ZTE_MODIFY
 service logcat_system /system/bin/logcat -v time -r 1024 -n 5 -b system -f /data/local/logs/logcat/logcat_system.log
     class logservice
     oneshot
@@ -598,18 +573,3 @@ service logcat_radio /system/bin/logcat -v time -r 1024 -n 9 -b radio -f /data/l
 service logcat_events /system/bin/logcat -v time -r 1024 -n 3 -b events -f /data/local/logs/logcat/logcat_events.log
     class logservice
     oneshot
-
-on property:persist.sys.ztelog.enable=1
-    start getlog
-    
-on property:persist.sys.ztelog.enable=0
-    stop getlog
-    class_stop logservice    
-    
-#zhangfengyu    
-service diag_klog /system/bin/diag_klog
-    class main
-    user root
-    group radio cache inet misc audio
-
-#ZTE_MODIFY end yangyulin
