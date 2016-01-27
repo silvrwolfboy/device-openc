@@ -43,7 +43,7 @@ PROPRIETARY_DEVICE_DIR=../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 
 mkdir -p $PROPRIETARY_DEVICE_DIR
 
-for NAME in audio hw wifi etc egl etc/firmware
+for NAME in audio hw wifi etc egl etc/firmware rfsa_adsp soundfx crdadir
 do
     mkdir -p $PROPRIETARY_DEVICE_DIR/$NAME
 done
@@ -143,42 +143,98 @@ copy_local_files()
 }
 
 COMMON_LIBS="
+	libalsa-intf.so
 	libcnefeatureconfig.so
+	libgps.utils.so
+	libloc_api_v02.so
+	libloc_core.so
+	libloc_ds_api.so
+	libloc_eng.so
+	libloc_xtra.so
+	libmmcamera_interface.so
+	libmmjpeg_interface.so
+	libqomx_core.so
+	libSR_AudioIn.so
+	libsoundpool.so
 	"
 
 copy_files "$COMMON_LIBS" "system/lib" ""
 
 copy_files_glob "lib*.so" "system/vendor/lib" ""
+copy_files_glob "surround_sound_headers.so" "system/vendor/lib" ""
 
 COMMON_BINS="
+	adsprpcd
+	alsaucm_test
+	amix
+	aplay
+	arec
+	audiod
+	brctl
 	bridgemgrd
+	charger_monitor
+	checkdata
+	crda
+	ds_fmc_appd
+	dun-server
+	ext4check.sh
 	fm_qsoc_patches
 	fmconfig
+	fsck_msdos
+	gpsone_daemon
+	ftmdaemon
+	gsiff_daemon
 	hci_qcomm_init
+	hostapd
+	irsc_util
+	location-mq
+	lowi-server
+	mke2fs
 	mm-qcamera-daemon
+	mm-audio-ftm
+	mpdecision
 	netmgrd
+	nl_listener
+	n_smux
 	port-bridge
+	ptt_socket_app
+	qcom-system-daemon
 	qmiproxy
 	qmuxd
+	qrngd
+	qrngp
 	radish
+	rfs_access
 	rmt_storage
+	sapd
+	thermal-engine
+	tune2fs
+	xtwifi-client
+	xtwifi-inet-agent
 	"
 
 copy_files "$COMMON_BINS" "system/bin" ""
+
+COMMON_CRDA="
+	linville.key.pub.pem
+	regulatory.bin
+	"
+copy_files "$COMMON_CRDA" "system/lib/crda" "crdadir"
 
 COMMON_HW="
 	audio_policy.msm8610.so
 	audio.primary.msm8610.so
 	camera.msm8610.so
 	gps.default.so
+	lights.msm8610.so
 	sensors.msm8610.so
 	"
 copy_files "$COMMON_HW" "system/lib/hw" "hw"
 
 COMMON_WIFI="
-	wlan.ko
+	pronto_wlan.ko
 	"
-copy_files "$COMMON_WIFI" "system/lib/modules" "wifi"
+copy_files "$COMMON_WIFI" "system/lib/modules/pronto" "wifi"
 
 COMMON_WIFI_VOLANS="
 	ath6kl_sdio.ko
@@ -187,13 +243,44 @@ copy_files "$COMMON_WIFI_VOLANS" "system/lib/modules/ath6kl-3.5" "wifi"
 
 COMMON_WLAN="
 	WCNSS_cfg.dat
-	WCNSS_qcom_cfg.ini
-	WCNSS_qcom_wlan_nv.bin
 	"
 copy_files "$COMMON_WLAN" "system/etc/firmware/wlan/prima" "wifi"
 
-COMMON_ETC="gps.conf"
+COMMON_WIFI_HOSTAPD="
+	hostapd.accept
+	hostapd.deny
+	hostapd_default.conf
+	"
+copy_files "$COMMON_WIFI_HOSTAPD" "system/etc/hostapd" "wifi"
+
+COMMON_ETC="
+	enable_swap.sh
+	gps.conf
+	izat.conf
+	lowi.conf
+	msap.conf
+	qmi_fw.conf
+	quipc.conf
+	sap.conf
+	sec_config
+	thermal-engine-8610.conf
+	xtwifi.conf
+	Bluetooth_cal.acdb
+	General_cal.acdb
+	Global_cal.acdb
+	Handset_cal.acdb
+	Hdmi_cal.acdb
+	Headset_cal.acdb
+	Speaker_cal.acdb
+	"
 copy_files "$COMMON_ETC" "system/etc" "etc"
+
+COMMON_ETC_WIFI="
+	WCNSS_qcom_cfg.ini
+	wpa_supplicant_ath6kl.conf
+	wpa_supplicant_wcn.conf
+	"
+copy_files "$COMMON_ETC_WIFI" "system/etc/wifi" "wifi"
 
 COMMON_AUDIO="
 	"
@@ -222,10 +309,25 @@ COMMON_FIRMWARE="
 	a300_pm4.fw
 	a330_pfp.fw
 	a330_pm4.fw
+	cpp_firmware_v1_1_1.fw
+	cpp_firmware_v1_1_6.fw
+	cpp_firmware_v1_2_0.fw
 	leia_pfp_470.fw
 	leia_pm4_470.fw
 	"
 copy_files "$COMMON_FIRMWARE" "system/etc/firmware" "etc/firmware"
+
+COMMON_VENDOR_RFSA_ADSP="
+	libadsp_denoise_skel.so
+	libadsp_jpege_skel.so
+	"
+copy_files "$COMMON_VENDOR_RFSA_ADSP" "system/vendor/lib/rfsa/adsp" "rfsa_adsp"
+
+COMMON_VENDOR_SOUNDFX="
+	libqcbassboost.so
+	libqcvirt.so
+	"
+copy_files "$COMMON_VENDOR_SOUNDFX" "system/vendor/lib/soundfx" "soundfx"
 
 echo $BASE_PROPRIETARY_DEVICE_DIR/libcnefeatureconfig.so:obj/lib/libcnefeatureconfig.so \\ >> $BLOBS_LIST
 
