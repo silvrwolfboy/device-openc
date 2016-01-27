@@ -573,3 +573,8 @@ service logcat_radio /system/bin/logcat -v time -r 1024 -n 9 -b radio -f /data/l
 service logcat_events /system/bin/logcat -v time -r 1024 -n 3 -b events -f /data/local/logs/logcat/logcat_events.log
     class logservice
     oneshot
+
+service diag_klog /system/bin/diag_klog
+    class main
+    user root
+    group radio cache inet misc audio

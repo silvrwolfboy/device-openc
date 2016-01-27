@@ -43,7 +43,7 @@ PROPRIETARY_DEVICE_DIR=../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 
 mkdir -p $PROPRIETARY_DEVICE_DIR
 
-for NAME in audio hw wifi etc egl etc/firmware rfsa_adsp soundfx crdadir
+for NAME in audio hw wifi etc egl etc/firmware rfsa_adsp soundfx crdadir surround_sound idc
 do
     mkdir -p $PROPRIETARY_DEVICE_DIR/$NAME
 done
@@ -144,15 +144,25 @@ copy_local_files()
 
 COMMON_LIBS="
 	libalsa-intf.so
+	libandroid.so
+	libaudioeffect_jni.so
 	libcnefeatureconfig.so
 	libgps.utils.so
+	libjnigraphics.so
+	libLLVM.so
 	libloc_api_v02.so
 	libloc_core.so
 	libloc_ds_api.so
 	libloc_eng.so
 	libloc_xtra.so
+	libmedia.so
 	libmmcamera_interface.so
 	libmmjpeg_interface.so
+	libOmxAacEnc.so
+	libOmxAmrEnc.so
+	libOmxEvrcEnc.so
+	libOmxQcelp13Enc.so
+	libOmxVdecHevc.so
 	libqomx_core.so
 	libSR_AudioIn.so
 	libsoundpool.so
@@ -172,43 +182,65 @@ COMMON_BINS="
 	audiod
 	brctl
 	bridgemgrd
+	btnvtool
 	charger_monitor
 	checkdata
 	crda
 	ds_fmc_appd
+	diag_callback_client
+	diag_dci_sample
+	diag_klog
+	diag_mdlog
+	diag_socket_log
+	diag_uart_log
 	dun-server
 	ext4check.sh
 	fm_qsoc_patches
 	fmconfig
 	fsck_msdos
-	gpsone_daemon
 	ftmdaemon
+	garden_app
+	gpsone_daemon
 	gsiff_daemon
 	hci_qcomm_init
+	hci_qcomm_initback
 	hostapd
 	irsc_util
 	location-mq
 	lowi-server
 	mke2fs
-	mm-qcamera-daemon
 	mm-audio-ftm
+	mm-pp-daemon
+	mm-qcamera-app
+	mm-qcamera-daemon
 	mpdecision
+	mtpd
 	netmgrd
 	nl_listener
 	n_smux
 	port-bridge
+	pppd
 	ptt_socket_app
 	qcom-system-daemon
 	qmiproxy
+	qmi_simple_ril_test
 	qmuxd
 	qrngd
 	qrngp
+	qrngtest
+	quipc_igsn
+	quipc_main
 	radish
+	regdbdump
 	rfs_access
 	rmt_storage
 	sapd
+	subsystem_ramdump
 	thermal-engine
 	tune2fs
+	usbhub
+	usbhub_init
+	wdsdaemon
 	xtwifi-client
 	xtwifi-inet-agent
 	"
@@ -238,6 +270,7 @@ copy_files "$COMMON_WIFI" "system/lib/modules/pronto" "wifi"
 
 COMMON_WIFI_VOLANS="
 	ath6kl_sdio.ko
+	ath6kl_usb.ko
 	"
 copy_files "$COMMON_WIFI_VOLANS" "system/lib/modules/ath6kl-3.5" "wifi"
 
@@ -254,16 +287,20 @@ COMMON_WIFI_HOSTAPD="
 copy_files "$COMMON_WIFI_HOSTAPD" "system/etc/hostapd" "wifi"
 
 COMMON_ETC="
+	cacert_location.pem
 	enable_swap.sh
+	ftm_test_config
 	gps.conf
 	izat.conf
 	lowi.conf
+	media_profiles.xml
 	msap.conf
 	qmi_fw.conf
 	quipc.conf
 	sap.conf
 	sec_config
 	thermal-engine-8610.conf
+	xtra_root_cert.pem
 	xtwifi.conf
 	Bluetooth_cal.acdb
 	General_cal.acdb
@@ -272,6 +309,7 @@ COMMON_ETC="
 	Hdmi_cal.acdb
 	Headset_cal.acdb
 	Speaker_cal.acdb
+	VerisignG5Root.cer
 	"
 copy_files "$COMMON_ETC" "system/etc" "etc"
 
@@ -281,6 +319,18 @@ COMMON_ETC_WIFI="
 	wpa_supplicant_wcn.conf
 	"
 copy_files "$COMMON_ETC_WIFI" "system/etc/wifi" "wifi"
+
+COMMON_ETC_SURROUND="
+	filter1i.pcm
+	filter1r.pcm
+	filter2i.pcm
+	filter2r.pcm
+	filter3i.pcm
+	filter3r.pcm
+	filter4i.pcm
+	filter4r.pcm
+	"
+copy_files "$COMMON_ETC_SURROUND" "/system/etc/surround_sound" "surround_sound"
 
 COMMON_AUDIO="
 	"
@@ -328,6 +378,17 @@ COMMON_VENDOR_SOUNDFX="
 	libqcvirt.so
 	"
 copy_files "$COMMON_VENDOR_SOUNDFX" "system/vendor/lib/soundfx" "soundfx"
+
+COMMON_IDC="
+	Atmel_maXTouch_Touchscreen_controller.idc
+	atmel_mxt_ts.idc
+	atmel-touchscreen.idc
+	ft5x0x_ts.idc
+	ft5x06_ts.idc
+	msg2133.idc
+	sensor00fn11.idc
+	"
+copy_files "$COMMON_IDC" "system/usr/idc" "idc"
 
 echo $BASE_PROPRIETARY_DEVICE_DIR/libcnefeatureconfig.so:obj/lib/libcnefeatureconfig.so \\ >> $BLOBS_LIST
 
