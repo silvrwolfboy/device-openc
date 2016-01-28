@@ -1,5 +1,4 @@
-$(call inherit-product, device/qcom/msm8610/msm8610.mk)
-
+# bootimage
 PRODUCT_COPY_FILES += \
   device/zte/zte_p821a10/rootdir/init.rc:root/init.rc \
   device/zte/zte_p821a10/rootdir/init.environ.rc:root/init.environ.rc \
@@ -11,12 +10,19 @@ PRODUCT_COPY_FILES += \
   device/zte/zte_p821a10/rootdir/fstab.qcom:root/fstab.qcom \
   device/zte/zte_p821a10/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/generic.mk)
-$(call inherit-product-if-exists, vendor/zte/zte_p821a10/zte_p821a10-vendor-blobs.mk)
+# System
+PRODUCT_COPY_FILES += \
+  device/zte/zte_p821a10/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+  device/zte/zte_p821a10/etc/media_profiles.xml:system/etc/media_profiles.xml \
+  device/zte/zte_p821a10/etc/sec_config:system/etc/sec_config \
+  device/zte/zte_p821a10/etc/snd_soc_msm/snd_soc_msm_8x10_wcd:system/etc/snd_soc_msm/snd_soc_msm_8x10_wcd \
+  device/zte/zte_p821a10/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuaa:system/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuaa \
+  device/zte/zte_p821a10/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuab:system/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuab
 
-PRODUCT_PROPERTY_OVERRIDES += \
-  ro.moz.ril.emergency_by_default=true \
-  org.bluez.device.conn.type=array
+# Rétablissement de l'heure
+PRODUCT_COPY_FILES += \
+  external/timekeep/gecko/TimeKeepService.js:system/b2g/distribution/bundles/timekeep/TimeKeepService.js \
+  external/timekeep/gecko/chrome.manifest:system/b2g/distribution/bundles/timekeep/chrome.manifest
 
 # Propriétés pour le ZTE Open C
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -39,19 +45,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
   persist.gps.qc_nlp_in_use=0 \
   ro.gps.agps_provider=1
 
-# Rétablissement de l'heure
-PRODUCT_COPY_FILES += \
-  external/timekeep/gecko/TimeKeepService.js:system/b2g/distribution/bundles/timekeep/TimeKeepService.js \
-  external/timekeep/gecko/chrome.manifest:system/b2g/distribution/bundles/timekeep/chrome.manifest
-
 # Activation Bluetooth pour Open C (voir bug 1004896) et Timekeep service
 PRODUCT_PACKAGES += \
   bluetooth.default \
   timekeep
 
-PRODUCT_NAME := zte_openc
-PRODUCT_DEVICE := zte_p821a10
+$(call inherit-product, $(SRC_TARGET_DIR)/product/generic.mk)
+$(call inherit-product-if-exists, vendor/zte/zte_p821a10/zte_p821a10-vendor-blobs.mk)
+$(call inherit-product, device/qcom/msm8610/msm8610.mk)
+
 PRODUCT_BRAND := ZTE
 PRODUCT_MANUFACTURER := ZTE
+PRODUCT_NAME := zte_openc
+PRODUCT_DEVICE := zte_p821a10
 PRODUCT_MODEL := Open C
+
+GAIA_DEV_PIXELS_PER_PX := 1.5
 BOOTANIMATION_ASSET_SIZE := wvga_800
