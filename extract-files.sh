@@ -144,11 +144,8 @@ copy_local_files()
 
 COMMON_LIBS="
 	libalsa-intf.so
-	libandroid.so
-	libaudioeffect_jni.so
 	libcnefeatureconfig.so
 	libgps.utils.so
-	libjnigraphics.so
 	libLLVM.so
 	libloc_api_v02.so
 	libloc_core.so
@@ -167,7 +164,6 @@ COMMON_LIBS="
 	libSR_AudioIn.so
 	libsoundpool.so
 	"
-
 copy_files "$COMMON_LIBS" "system/lib" ""
 
 copy_files_glob "lib*.so" "system/vendor/lib" ""
@@ -204,7 +200,6 @@ COMMON_BINS="
 	gsiff_daemon
 	hci_qcomm_init
 	hci_qcomm_initback
-	hostapd
 	irsc_util
 	location-mq
 	lowi-server
@@ -244,7 +239,6 @@ COMMON_BINS="
 	xtwifi-client
 	xtwifi-inet-agent
 	"
-
 copy_files "$COMMON_BINS" "system/bin" ""
 
 COMMON_CRDA="
@@ -293,12 +287,10 @@ COMMON_ETC="
 	gps.conf
 	izat.conf
 	lowi.conf
-	media_profiles.xml
 	msap.conf
 	qmi_fw.conf
 	quipc.conf
 	sap.conf
-	sec_config
 	thermal-engine-8610.conf
 	xtra_root_cert.pem
 	xtwifi.conf
