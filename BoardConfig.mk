@@ -25,6 +25,10 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 
+# Appareil photo / enregistrement vidéo
+TARGET_USES_ION := true
+
+# Recovery
 ENABLE_LIBRECOVERY := true
 RECOVERY_EXTERNAL_STORAGE := /storage/sdcard1
 
