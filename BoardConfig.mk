@@ -24,6 +24,9 @@ BOARD_USBIMAGE_PARTITION_SIZE_KB :=
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := \
+  device/zte/zte_p821a10/bluetooth \
+  hardware/libhardware_moz/include/hardware_moz/bluetooth/bluedroid
 
 # Appareil photo / enregistrement vidéo
 TARGET_USES_ION := true
