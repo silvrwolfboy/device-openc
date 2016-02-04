@@ -1,7 +1,6 @@
 include device/qcom/msm8610/BoardConfig.mk
 
 # Compilation noyau - certains éléments déjà défini dans le fichier inclu
-TARGET_RECOVERY_FSTAB := device/zte/zte_p821a10/recovery.fstab
 TARGET_NO_BOOTLOADER := true
 KERNEL_DEFCONFIG := msm8610-perf_defconfig
 
@@ -32,6 +31,8 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := \
 TARGET_USES_ION := true
 
 # Recovery
+TARGET_USES_TCT_FOTA := false
+TARGET_RECOVERY_FSTAB := device/zte/zte_p821a10/recovery.fstab
 ENABLE_LIBRECOVERY := true
 RECOVERY_EXTERNAL_STORAGE := /storage/sdcard1
 
