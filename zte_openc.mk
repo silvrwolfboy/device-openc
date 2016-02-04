@@ -15,6 +15,7 @@ PRODUCT_COPY_FILES += \
   device/zte/zte_p821a10/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
   device/zte/zte_p821a10/etc/media_profiles.xml:system/etc/media_profiles.xml \
   device/zte/zte_p821a10/etc/sec_config:system/etc/sec_config \
+  device/zte/zte_p821a10/etc/bluetooth/stack.conf:system/etc/bluetooth/stack.conf \
   device/zte/zte_p821a10/etc/snd_soc_msm/snd_soc_msm_8x10_wcd:system/etc/snd_soc_msm/snd_soc_msm_8x10_wcd \
   device/zte/zte_p821a10/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuaa:system/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuaa \
   device/zte/zte_p821a10/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuab:system/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuab
