@@ -557,6 +557,13 @@ service b2g /system/bin/b2g.sh
     class main
     onrestart restart media
 
+service sensorsd /system/bin/sensorsd
+    class main
+    user system
+    group system input
+    disabled
+    oneshot
+
 #ZTE_MODIFY
 service logcat_system /system/bin/logcat -v time -r 1024 -n 5 -b system -f /data/local/logs/logcat/logcat_system.log
     class logservice
