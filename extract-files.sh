@@ -185,11 +185,10 @@ COMMON_BINS="
 	diag_uart_log
 	dun-server
 	ext4check.sh
-	fm_qsoc_patches
 	fmconfig
+	fm_qsoc_patches
 	fsck_msdos
 	ftmdaemon
-	garden_app
 	gpsone_daemon
 	gsiff_daemon
 	hci_qcomm_init
