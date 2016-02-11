@@ -43,7 +43,7 @@ PROPRIETARY_DEVICE_DIR=../../../vendor/$MANUFACTURER/$DEVICE/proprietary
 
 mkdir -p $PROPRIETARY_DEVICE_DIR
 
-for NAME in audio hw wifi etc egl etc/firmware rfsa_adsp soundfx crdadir surround_sound idc
+for NAME in audio hw wifi etc egl etc/firmware rfsa_adsp soundfx crdadir idc
 do
     mkdir -p $PROPRIETARY_DEVICE_DIR/$NAME
 done
@@ -167,15 +167,9 @@ COMMON_LIBS="
 copy_files "$COMMON_LIBS" "system/lib" ""
 
 copy_files_glob "lib*.so" "system/vendor/lib" ""
-copy_files_glob "surround_sound_headers.so" "system/vendor/lib" ""
 
 COMMON_BINS="
 	adsprpcd
-	alsaucm_test
-	amix
-	aplay
-	arec
-	audiod
 	brctl
 	bridgemgrd
 	btnvtool
@@ -204,7 +198,6 @@ COMMON_BINS="
 	location-mq
 	lowi-server
 	mke2fs
-	mm-audio-ftm
 	mm-pp-daemon
 	mm-qcamera-app
 	mm-qcamera-daemon
@@ -218,7 +211,6 @@ COMMON_BINS="
 	ptt_socket_app
 	qcom-system-daemon
 	qmiproxy
-	qmi_simple_ril_test
 	qmuxd
 	qrngd
 	qrngp
@@ -262,12 +254,6 @@ COMMON_WIFI="
 	"
 copy_files "$COMMON_WIFI" "system/lib/modules/pronto" "wifi"
 
-COMMON_WIFI_VOLANS="
-	ath6kl_sdio.ko
-	ath6kl_usb.ko
-	"
-copy_files "$COMMON_WIFI_VOLANS" "system/lib/modules/ath6kl-3.5" "wifi"
-
 COMMON_WLAN="
 	WCNSS_cfg.dat
 	"
@@ -288,7 +274,6 @@ COMMON_ETC="
 	izat.conf
 	lowi.conf
 	msap.conf
-	qmi_fw.conf
 	quipc.conf
 	sap.conf
 	thermal-engine-8610.conf
@@ -301,7 +286,6 @@ COMMON_ETC="
 	Hdmi_cal.acdb
 	Headset_cal.acdb
 	Speaker_cal.acdb
-	VerisignG5Root.cer
 	"
 copy_files "$COMMON_ETC" "system/etc" "etc"
 
@@ -311,18 +295,6 @@ COMMON_ETC_WIFI="
 	wpa_supplicant_wcn.conf
 	"
 copy_files "$COMMON_ETC_WIFI" "system/etc/wifi" "wifi"
-
-COMMON_ETC_SURROUND="
-	filter1i.pcm
-	filter1r.pcm
-	filter2i.pcm
-	filter2r.pcm
-	filter3i.pcm
-	filter3r.pcm
-	filter4i.pcm
-	filter4r.pcm
-	"
-copy_files "$COMMON_ETC_SURROUND" "/system/etc/surround_sound" "surround_sound"
 
 COMMON_AUDIO="
 	"
