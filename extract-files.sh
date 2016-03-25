@@ -144,6 +144,7 @@ copy_local_files()
 
 COMMON_LIBS="
 	libalsa-intf.so
+	libaudioroute.so
 	libcnefeatureconfig.so
 	libgps.utils.so
 	libLLVM.so
@@ -176,21 +177,11 @@ COMMON_BINS="
 	charger_monitor
 	checkdata
 	crda
-	ds_fmc_appd
-	diag_callback_client
-	diag_dci_sample
 	diag_klog
-	diag_mdlog
-	diag_socket_log
-	diag_uart_log
-	dun-server
 	ext4check.sh
-	fmconfig
 	fm_qsoc_patches
+	fmconfig
 	fsck_msdos
-	ftmdaemon
-	gpsone_daemon
-	gsiff_daemon
 	hci_qcomm_init
 	hci_qcomm_initback
 	irsc_util
@@ -201,12 +192,9 @@ COMMON_BINS="
 	mm-qcamera-app
 	mm-qcamera-daemon
 	mpdecision
-	mtpd
 	netmgrd
 	nl_listener
-	n_smux
 	port-bridge
-	pppd
 	ptt_socket_app
 	qcom-system-daemon
 	qmiproxy
@@ -214,19 +202,13 @@ COMMON_BINS="
 	qrngd
 	qrngp
 	qrngtest
-	quipc_igsn
-	quipc_main
 	radish
 	regdbdump
 	rfs_access
 	rmt_storage
-	sapd
 	subsystem_ramdump
 	thermal-engine
 	tune2fs
-	usbhub
-	usbhub_init
-	wdsdaemon
 	xtwifi-client
 	xtwifi-inet-agent
 	"
@@ -248,26 +230,8 @@ COMMON_HW="
 	"
 copy_files "$COMMON_HW" "system/lib/hw" "hw"
 
-COMMON_WIFI="
-	pronto_wlan.ko
-	"
-copy_files "$COMMON_WIFI" "system/lib/modules/pronto" "wifi"
-
-COMMON_WLAN="
-	WCNSS_cfg.dat
-	"
-copy_files "$COMMON_WLAN" "system/etc/firmware/wlan/prima" "wifi"
-
-COMMON_WIFI_HOSTAPD="
-	hostapd.accept
-	hostapd.deny
-	hostapd_default.conf
-	"
-copy_files "$COMMON_WIFI_HOSTAPD" "system/etc/hostapd" "wifi"
-
 COMMON_ETC="
 	cacert_location.pem
-	enable_swap.sh
 	ftm_test_config
 	gps.conf
 	izat.conf
@@ -287,13 +251,6 @@ COMMON_ETC="
 	Speaker_cal.acdb
 	"
 copy_files "$COMMON_ETC" "system/etc" "etc"
-
-COMMON_ETC_WIFI="
-	WCNSS_qcom_cfg.ini
-	wpa_supplicant_ath6kl.conf
-	wpa_supplicant_wcn.conf
-	"
-copy_files "$COMMON_ETC_WIFI" "system/etc/wifi" "wifi"
 
 COMMON_AUDIO="
 	"

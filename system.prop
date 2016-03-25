@@ -32,12 +32,6 @@ dalvik.vm.heapsize=36m
 dev.pm.dyn_samplingrate=1
 
 ro.hdmi.enable=true
-tunnel.decode=true
-#8x10 does not support tunnel av playback
-#this prop should be set to false all the time
-tunnel.audiovideo.decode=false
-lpa.decode=false
-lpa.use-stagefright=true
 
 #system props for the MM modules
 
@@ -93,16 +87,15 @@ ro.opengles.version=196608
 #ZTE_MODIFY
 telephony.lteOnCdmaDevice=0
 
-# simulate sdcard on /data/media
-#
-persist.fuse_sdcard=true
-
 #
 #snapdragon value add features
 #
 ro.qc.sdk.audio.ssr=false
 ##fluencetype can be "fluence" or "fluencepro" or "none"
 ro.qc.sdk.audio.fluencetype=none
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.fluence.speaker=true
 
 # Reduce Background apps limit
 ro.sys.fw.bg_apps_limit=20
@@ -122,14 +115,30 @@ persist.dash.avsync.window.msec=100
 
 tunnel.audio.encode = false
 
+#use VERY_HIGH_QUALITY for audio resampler
+af.resampler.quality=4
+ro.config.low_ram=true
+
+#Buffer size in kbytes for compress offload playback
+audio.offload.buffer.size.kb=32
+
+#8x10 does not support tunnel av playback
+#this prop should be set to false all the time
+av.offload.enable=false
+
+#enable voice path for PCM VoIP by default
+use.voice.path.for.pcm.voip=true
 #
 #System property for FM transmitter
 #
 ro.fm.transmitter=false
 
-#Audio Resourcemanager exceptions
-#by enabling following flag to true we support pcm camcorder recording
-rm.audio.exceptions = true
+#enable dsp gapless mode by default
+audio.offload.gapless.enabled=true
 
 #ZTE_MODIFY
 ro.ril.data_auto_attach=true
+
+# MODIFY, add this to prevent error related to '${persist.sys.ssr.enable_debug}'
+# Subsystem
+persist.sys.ssr.enable_debug=0

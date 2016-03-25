@@ -5,6 +5,11 @@
 #TODO: Add 'check' as fs_mgr_flags with data partition.
 # Currently we dont have e2fsck compiled. So fs check would failed.
 
+# micgeri annotation : The mounting point of sdcard will be the name defined in voldmanaged
+# For example, to mount sdcard1 on /mnt/media_rw/myfolder or /storage/myfolder (have to be created, usually in init.qcom.rc) :
+# voldmanaged=myfolder:auto
+#Please see on CAF <https://us.codeaurora.org/cgit/quic/la/platform/vendor/qcom/msm8610/commit/fstab.qcom?h=LNX.LA.3.5.2.1.1&id=fc8f576b2a4a61cf6aa92f057a121c120465def2>
+
 #<src>                                                <mnt_point>  <type>  <mnt_flags and options>                     <fs_mgr_flags>
 /dev/block/platform/msm_sdcc.1/by-name/system         /system      ext4    ro,barrier=1                                wait
 /dev/block/platform/msm_sdcc.1/by-name/userdata       /data        ext4    nosuid,nodev,barrier=1,noauto_da_alloc      wait,check,encryptable=footer
@@ -12,7 +17,7 @@
 #ZTE_MODIFY liuxiaohui modify for sdcard storage 20131228
 /devices/msm_sdcc.1/mmc_host                     /storage/sdcard  vfat    nosuid,nodev                                wait,voldmanaged=sdcard:24
 #end liuxiaohui
-/devices/msm_sdcc.2/mmc_host                     /storage/sdcard1  vfat    nosuid,nodev                                wait,voldmanaged=extsdcard:auto
+/devices/msm_sdcc.2/mmc_host                     /storage/sdcard1  vfat    nosuid,nodev                                wait,voldmanaged=sdcard1:auto
 #/devices/msm_sdcc.2/mmc_host                     /storage/sdcard1  vfat    nosuid,nodev                                wait,voldmanaged=sdcard:auto
 #/dev/block/mmcblk0p11         /system      ext4    ro,barrier=1                                wait
 #/dev/block/mmcblk0p12       /data        ext4    nosuid,nodev,barrier=1,noauto_da_alloc      wait,check,encryptable=footer

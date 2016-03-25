@@ -3,18 +3,14 @@ PRODUCT_COPY_FILES += \
   device/zte/zte_p821a10/rootdir/init.rc:root/init.rc \
   device/zte/zte_p821a10/rootdir/init.environ.rc:root/init.environ.rc \
   device/zte/zte_p821a10/rootdir/init.qcom.rc:root/init.qcom.rc \
-  device/zte/zte_p821a10/rootdir/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
   device/zte/zte_p821a10/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
   device/zte/zte_p821a10/rootdir/init.qcom.usb.sh:root/init.qcom.usb.sh \
   device/zte/zte_p821a10/rootdir/init.target.rc:root/init.target.rc \
-  device/zte/zte_p821a10/rootdir/fstab.qcom:root/fstab.qcom \
-  device/zte/zte_p821a10/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
+  device/zte/zte_p821a10/rootdir/fstab.qcom:root/fstab.qcom
 
 # System
 PRODUCT_COPY_FILES += \
-  device/zte/zte_p821a10/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
   device/zte/zte_p821a10/etc/media_profiles.xml:system/etc/media_profiles.xml \
-  device/zte/zte_p821a10/etc/sec_config:system/etc/sec_config \
   device/zte/zte_p821a10/etc/snd_soc_msm/snd_soc_msm_8x10_wcd:system/etc/snd_soc_msm/snd_soc_msm_8x10_wcd \
   device/zte/zte_p821a10/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuaa:system/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuaa \
   device/zte/zte_p821a10/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuab:system/etc/snd_soc_msm/snd_soc_msm_8x10_wcd_skuab
