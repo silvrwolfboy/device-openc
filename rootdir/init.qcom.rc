@@ -274,8 +274,8 @@ service usbhub_init /system/bin/usbhub_init
    disabled
    oneshot
 
-on property:persist.radio.atfwd.start=false
-    stop atfwd
+###on property:persist.radio.atfwd.start=false
+###    stop atfwd
 
 on property:init.svc.surfaceflinger=stopped
     stop ppd
@@ -328,9 +328,9 @@ on property:vold.decrypt=trigger_restart_framework
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
-service cnd /system/bin/cnd
-    class late_start
-    socket cnd stream 660 root inet
+###service cnd /system/bin/cnd
+###    class late_start
+###    socket cnd stream 660 root inet
 
 service irsc_util /system/bin/logwrapper /system/bin/irsc_util "/etc/sec_config"
     class main
@@ -645,11 +645,11 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
 on property:sys.boot_completed=1
     start qcom-post-boot
 
-service atfwd /system/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
-    onrestart /system/bin/log -t RIL-ATFWD -p w "ATFWD daemon restarted"
+###service atfwd /system/bin/ATFWD-daemon
+###    class late_start
+###    user system
+###    group system radio
+###    onrestart /system/bin/log -t RIL-ATFWD -p w "ATFWD daemon restarted"
 
 service hdmid /system/bin/hdmid
     class late_start
@@ -726,10 +726,10 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
 service charger /charger
     class charger
 
-service ssr_diag /system/bin/ssr_diag
-    class late_start
-    user system
-    group system
+###service ssr_diag /system/bin/ssr_diag
+###    class late_start
+###    user system
+###    group system
 
 # SSR setting
 on property:persist.sys.ssr.restart_level=*
@@ -778,10 +778,3 @@ service diag_mdlog_stop /system/bin/diag_mdlog -k
     group system qcom_diag sdcard_rw sdcard_r media_rw
     disabled
     oneshot
-
-#[ECID:000000] ZTEBSP wanghaifei start 20130905, for akm sensor device init
-service akmd /system/bin/akmd
-    class late_start
-    user root
-    oneshot
-#[ECID:000000] ZTEBSP wanghaifei end 20130905, for akm sensor device init
