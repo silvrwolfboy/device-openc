@@ -133,3 +133,7 @@ rm.audio.exceptions = true
 
 #ZTE_MODIFY
 ro.ril.data_auto_attach=true
+
+# MODIFY, add this to prevent error related to '${persist.sys.ssr.enable_debug}'
+# Subsystem
+persist.sys.ssr.enable_debug=0
