@@ -89,7 +89,7 @@ service time_daemon /system/bin/time_daemon
    group root
    disabled
 
-service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+service mpdecision /system/bin/mpdecision --avg_comp
    user root
    disabled
 
