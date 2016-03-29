@@ -258,16 +258,8 @@ COMMON_WLAN="
 	"
 copy_files "$COMMON_WLAN" "system/etc/firmware/wlan/prima" "wifi"
 
-COMMON_WIFI_HOSTAPD="
-	hostapd.accept
-	hostapd.deny
-	hostapd_default.conf
-	"
-copy_files "$COMMON_WIFI_HOSTAPD" "system/etc/hostapd" "wifi"
-
 COMMON_ETC="
 	cacert_location.pem
-	enable_swap.sh
 	ftm_test_config
 	gps.conf
 	izat.conf
@@ -287,13 +279,6 @@ COMMON_ETC="
 	Speaker_cal.acdb
 	"
 copy_files "$COMMON_ETC" "system/etc" "etc"
-
-COMMON_ETC_WIFI="
-	WCNSS_qcom_cfg.ini
-	wpa_supplicant_ath6kl.conf
-	wpa_supplicant_wcn.conf
-	"
-copy_files "$COMMON_ETC_WIFI" "system/etc/wifi" "wifi"
 
 COMMON_AUDIO="
 	"
