@@ -7,7 +7,6 @@
 # This is a common source of Android security bugs.
 #
 
-import /init.environ.rc
 import /init.usb.rc
 import /init.${ro.hardware}.rc
 import /init.trace.rc
@@ -32,8 +31,17 @@ sysclktz 0
 
 loglevel 3
 
-# Redirect rilpoxy to rild
+# setup the global environment
+    export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
     symlink /dev/socket/rild /dev/socket/rilproxy
+    export ANDROID_BOOTLOGO 1
+    export ANDROID_ROOT /system
+    export ANDROID_ASSETS /system/app
+    export ANDROID_DATA /data
+    export ANDROID_STORAGE /storage
+    export ASEC_MOUNTPOINT /mnt/asec
+    export LOOP_MOUNTPOINT /mnt/obb
+    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/mms-common.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/telephony-msim.jar
 
 # Backward compatibility
     symlink /system/etc /etc
@@ -339,12 +347,8 @@ on boot
     #chown system system /sys/class/leds/red/device/blink
     chown system system /sys/class/leds/red/brightness
     chown system system /sys/class/leds/green/brightness
-    #chown system system /sys/class/leds/blue/brightness
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/green/blink
-    #chown system system /sys/class/leds/red/device/grpfreq
-    #chown system system /sys/class/leds/red/device/grppwm
-    #chown system system /sys/class/leds/red/device/blink
     chown system system /sys/class/timed_output/vibrator/enable
     #//[ECID:0000]ZTE_BSP maxiaoping 20130821 modify leds&vibrator feature for 8x26,end.
     
@@ -386,7 +390,7 @@ on boot
     #ZTE for camera tintless
     setprop persist.camera.tintless  enable
     
-	class_start core
+    class_start core
     class_start main
 
 on nonencrypted
@@ -480,6 +484,21 @@ service ril-daemon /system/bin/rild
     user root
     group radio cache inet misc audio log qcom_diag
 
+service surfaceflinger /system/bin/surfaceflinger
+    class main
+    user system
+    group graphics drmrpc
+    onrestart restart zygote
+    onrestart restart ppd
+
+service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
+    class main
+    socket zygote stream 660 root system
+    onrestart write /sys/android_power/request_state wake
+    onrestart write /sys/power/state on
+    onrestart restart media
+    onrestart restart netd
+
 service drm /system/bin/drmserver
     class main
     user drm
@@ -545,11 +564,11 @@ service mdnsd /system/bin/mdnsd
     disabled
     oneshot
 
-service gonksched /system/bin/gonksched
+service fakeappops /system/bin/fakeappops
     class main
     user root
 
-service fakeappops /system/bin/fakeappops
+service gonksched /system/bin/gonksched
     class main
     user root
 
