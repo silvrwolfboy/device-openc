@@ -16,6 +16,10 @@ PRODUCT_COPY_FILES += \
   external/timekeep/gecko/TimeKeepService.js:system/b2g/distribution/bundles/timekeep/TimeKeepService.js \
   external/timekeep/gecko/chrome.manifest:system/b2g/distribution/bundles/timekeep/chrome.manifest
 
+TARGET_GCC_VERSION_EXP := 4.8
+COMMON_GLOBAL_CFLAGS += -Wno-unused-parameter
+TARGET_GLOBAL_CPPFLAGS += -Wno-unused-parameter -Wno-sizeof-pointer-memaccess
+
 # Propriétés pour le ZTE Open C
 PRODUCT_PROPERTY_OVERRIDES += \
   diag.reset_handler=true \
