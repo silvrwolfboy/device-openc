@@ -16,9 +16,8 @@ PRODUCT_COPY_FILES += \
   external/timekeep/gecko/TimeKeepService.js:system/b2g/distribution/bundles/timekeep/TimeKeepService.js \
   external/timekeep/gecko/chrome.manifest:system/b2g/distribution/bundles/timekeep/chrome.manifest
 
-TARGET_GCC_VERSION_EXP := 4.8
-COMMON_GLOBAL_CFLAGS += -Wno-unused-parameter
-TARGET_GLOBAL_CPPFLAGS += -Wno-unused-parameter -Wno-sizeof-pointer-memaccess
+# Build Gecko with gcc-4.9
+GECKO_TOOLS_PREFIX = prebuilts/gcc/$(HOST_PREBUILT_TAG)/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 
 # Propriétés pour le ZTE Open C
 PRODUCT_PROPERTY_OVERRIDES += \
